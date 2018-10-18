@@ -12,6 +12,9 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
+/**
+ * @author leo
+ */
 @ActivityScoped
 public class MainModel extends BaseModel implements MainContract.Model {
     @Inject

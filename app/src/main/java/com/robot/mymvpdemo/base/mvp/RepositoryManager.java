@@ -50,13 +50,13 @@ public class RepositoryManager implements IRepositoryManager {
     Application mApplication;
     @Inject
     Lazy<Retrofit> mRetrofit;
-//    @Inject
-//    Lazy<RxCache> mRxCache;
+    //    @Inject
+    //    Lazy<RxCache> mRxCache;
 
-//    @Inject
-//    Cache.Factory mCachefactory;
-//    private Cache<String, Object> mRetrofitServiceCache;
-//    private Cache<String, Object> mCacheServiceCache;
+    //    @Inject
+    //    Cache.Factory mCachefactory;
+    //    private Cache<String, Object> mRetrofitServiceCache;
+    //    private Cache<String, Object> mCacheServiceCache;
 
     @Inject
     public RepositoryManager() {
@@ -81,6 +81,7 @@ public class RepositoryManager implements IRepositoryManager {
      * @param <T>          ApiService class
      * @return ApiService
      */
+    @SuppressWarnings("unchecked")
     private <T> T createWrapperService(Class<T> serviceClass) {
         // 通过二次代理，对 Retrofit 代理方法的调用包进新的 Observable 里在 io 线程执行。
         return (T) Proxy.newProxyInstance(serviceClass.getClassLoader(),
@@ -113,16 +114,16 @@ public class RepositoryManager implements IRepositoryManager {
      * @return ApiService
      */
     private <T> T getRetrofitService(Class<T> serviceClass) {
-//        if (mRetrofitServiceCache == null) {
-//            mRetrofitServiceCache = mCachefactory.build(CacheType.RETROFIT_SERVICE_CACHE);
-//        }
-//        Preconditions.checkNotNull(mRetrofitServiceCache,
-//                "Cannot return null from a Cache.Factory#build(int) method");
-//        T retrofitService = (T) mRetrofitServiceCache.get(serviceClass.getCanonicalName());
-//        if (retrofitService == null) {
-//            retrofitService = mRetrofit.get().create(serviceClass);
-////            mRetrofitServiceCache.put(serviceClass.getCanonicalName(), retrofitService);
-//        }
+        //        if (mRetrofitServiceCache == null) {
+        //            mRetrofitServiceCache = mCachefactory.build(CacheType.RETROFIT_SERVICE_CACHE);
+        //        }
+        //        Preconditions.checkNotNull(mRetrofitServiceCache,
+        //                "Cannot return null from a Cache.Factory#build(int) method");
+        //        T retrofitService = (T) mRetrofitServiceCache.get(serviceClass.getCanonicalName());
+        //        if (retrofitService == null) {
+        //            retrofitService = mRetrofit.get().create(serviceClass);
+        ////            mRetrofitServiceCache.put(serviceClass.getCanonicalName(), retrofitService);
+        //        }
         T retrofitService = mRetrofit.get().create(serviceClass);
         return retrofitService;
     }
@@ -140,17 +141,17 @@ public class RepositoryManager implements IRepositoryManager {
      */
     @Override
     public synchronized <T> T obtainCacheService(Class<T> cacheClass) {
-//        if (mCacheServiceCache == null) {
-//            mCacheServiceCache = mCachefactory.build(CacheType.CACHE_SERVICE_CACHE);
-//        }
-//        Preconditions.checkNotNull(mCacheServiceCache,
-//                "Cannot return null from a Cache.Factory#build(int) method");
-//        T cacheService = (T) mCacheServiceCache.get(cacheClass.getCanonicalName());
-//        if (cacheService == null) {
-//            cacheService = mRxCache.get().using(cacheClass);
-//            mCacheServiceCache.put(cacheClass.getCanonicalName(), cacheService);
-//        }
-//        return cacheService;
+        //        if (mCacheServiceCache == null) {
+        //            mCacheServiceCache = mCachefactory.build(CacheType.CACHE_SERVICE_CACHE);
+        //        }
+        //        Preconditions.checkNotNull(mCacheServiceCache,
+        //                "Cannot return null from a Cache.Factory#build(int) method");
+        //        T cacheService = (T) mCacheServiceCache.get(cacheClass.getCanonicalName());
+        //        if (cacheService == null) {
+        //            cacheService = mRxCache.get().using(cacheClass);
+        //            mCacheServiceCache.put(cacheClass.getCanonicalName(), cacheService);
+        //        }
+        //        return cacheService;
         return null;
     }
 
@@ -159,7 +160,7 @@ public class RepositoryManager implements IRepositoryManager {
      */
     @Override
     public void clearAllCache() {
-//        mRxCache.get().evictAll().subscribe();
+        //        mRxCache.get().evictAll().subscribe();
     }
 
     @Override

@@ -24,9 +24,9 @@ public class MainPresenter extends BasePresenter<MainContract.Model,MainContract
         super(model,view);
     }
     public void setView(){
-        Observer<BaseResponse<List<HouseKeeper>>> observer = mModel.getHoseKeepers().subscribeOn(Schedulers.io())
+        mModel.getHoseKeepers().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<BaseResponse<List<HouseKeeper>>>() {
+                .subscribe(new Observer<BaseResponse<List<HouseKeeper>>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.e(TAG,"开始请求");
